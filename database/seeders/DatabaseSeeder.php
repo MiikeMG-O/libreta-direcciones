@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Email;
+use App\Models\Contacto;
+use App\Models\Telefono;
+use App\Models\Direccion;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +17,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $usuarios = User::factory()->count(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($usuarios as $usuario) {
+            $contactos = Contacto::factory()->count(5)->create(['user_id' => $usuario->id]);
+
+            foreach ($contactos as $contacto) {
+                Telefono::factory()->count(3)->create(['contacto_id' => $contacto->id]);
+                Email::factory()->count(3)->create(['contacto_id' => $contacto->id]);
+                Direccion::factory()->count(3)->create(['contacto_id' => $contacto->id]);
+            }
+        }
     }
 }
