@@ -1,32 +1,31 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
     "lib": [
-      "ES2022",
+      "es2018",
       "dom"
-    ]
+    ],
+    "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+  "include": [
+    "src/**/*.ts",
+    "src/polyfills.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/test.ts",
+    "**/*.spec.ts"
+  ]
 }
