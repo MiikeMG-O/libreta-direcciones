@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class FrontController extends Controller
 {
     public function index()
     {
-        return file_get_contents(public_path('front/browser/index.html'));
+        return response()->file(public_path('front/index.html'));
     }
 }
