@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $usuarios = User::factory()->count(10)->create();
 
         foreach ($usuarios as $usuario) {
-            $contactos = Contacto::factory()->count(5)->create(['user_id' => $usuario->id]);
+            $contactos = Contacto::factory()->count(500)->create(['user_id' => $usuario->id]);
 
             foreach ($contactos as $contacto) {
                 Telefono::factory()->count(3)->create(['contacto_id' => $contacto->id]);

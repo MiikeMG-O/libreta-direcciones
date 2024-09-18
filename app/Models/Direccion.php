@@ -9,6 +9,12 @@ class Direccion extends Model
 {
     use HasFactory;
     protected $table = 'direcciones';
+    protected $fillable = [
+        'calle',
+        'ciudad',
+        'estado',
+        'codigo_postal'
+    ];
 
     public function contacto()
     {
