@@ -16,5 +16,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/contacto/{id}', [ContactoController::class, 'show']);
     Route::post('/contactos', [ContactoController::class, 'create']);
     Route::put('/contactos/{id}', [ContactoController::class, 'update']);
-    Route::delete('/contactos', [ContactoController::class, 'destroy']);
+    Route::delete('/contactos/{id}', [ContactoController::class, 'destroy']);
 });

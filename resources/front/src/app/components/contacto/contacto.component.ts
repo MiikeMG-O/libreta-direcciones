@@ -22,6 +22,11 @@ export class ContactoComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initDataTable();
+
+    $('#contactosTable').on('click', '.delete-btn', (event: any) => {
+      const contactoId = $(event.currentTarget).data('id');
+      this.onDeleteContacto(contactoId);
+    });
   }
 
   initDataTable(): void {
@@ -74,7 +79,7 @@ export class ContactoComponent implements OnInit, AfterViewInit {
             <div class="btn-group" role="group" aria-label="Acciones">
               <a href="/contacto/${data.id}" class="btn btn-sm btn-primary" title="Ver Contacto">Ver</a>
               <a href="/contactos/editar/${data.id}" class="btn btn-sm btn-info" title="Editar Contacto">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger" title="Eliminar Contacto">Eliminar</a>
+              <button class="btn btn-sm btn-danger delete-btn" data-id="${data.id}" title="Eliminar Contacto">Eliminar</button>
             </div>
           `
         }
@@ -94,5 +99,19 @@ export class ContactoComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+  onDeleteContacto(id: string): void {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este contacto?')) {
+      this.contactoService.deleteContacto(id).subscribe({
+        next: () => {
+          window.alert('Contacto eliminado correctamente.');
+          $('#contactosTable').DataTable().ajax.reload();
+        },
+        error: (err) => {
+          console.error('Error al eliminar el contacto:', err);
+        }
+      });
+    }
   }
 }

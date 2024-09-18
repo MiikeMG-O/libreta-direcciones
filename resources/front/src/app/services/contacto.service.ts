@@ -42,6 +42,6 @@ export class ContactoService {
   }
 
   deleteContacto(id: string): Observable<void> {
-    return this.http.delete<void>(this.apiUrl+'contactos'+id, { headers: this.getHeaders() });
+    return this.http.delete<void>(this.apiUrl+'contactos/'+id, { headers: this.getHeaders() });
   }
 }
