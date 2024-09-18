@@ -1,0 +1,10 @@
+.pagination .page-item.disabled .page-link {
+  cursor: not-allowed;
+}
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.row.justify-content-between {
+  margin-bottom: 0.7rem !important;
+}

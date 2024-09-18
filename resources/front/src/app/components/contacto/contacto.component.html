@@ -1,0 +1,30 @@
+<div *ngIf="isLoading" class="spinner">Cargando...</div>
+
+<div class="container pt-5">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Contactos</h1>
+
+      <table id="contactosTable" class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Emails</th>
+            <th>Teléfonos</th>
+            <th>Direcciones</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- DataTables will fill this -->
+        </tbody>
+      </table>
+
+      <div class="card-footer mt-3">
+        <a [routerLink]="['/contactos/crear']" class="btn btn-sm btn-primary me-1" title="Agregar Contacto">
+          Nuevo Contacto
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

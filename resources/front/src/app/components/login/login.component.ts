@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     formData.append('password', this.loginForm.get('password')?.value);
 
     this.authService.login(formData).pipe(
-      catchError(err => {
+      catchError(() => {
         this.errorMessage = 'Correo o contraseña invalidos!';
         return of(null);
       })

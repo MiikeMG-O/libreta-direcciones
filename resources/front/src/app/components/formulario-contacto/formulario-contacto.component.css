@@ -1,0 +1,10 @@
+.flex-fill {
+  flex: 1;
+}
+.flex-fill-btn {
+  height: fit-content;
+  margin-bottom: .25rem;
+}
+div.table-responsive>div.dt-container>div.row {
+  margin-bottom: 1.25rem !important;
+}

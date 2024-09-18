@@ -1,0 +1,102 @@
+<div class="container pt-5">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">{{ isEditMode ? 'Editar Contacto' : 'Crear Contacto' }}</h3>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <form [formGroup]="contactoForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input id="nombre" class="form-control" formControlName="nombre" />
+        </div>
+
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input id="apellido" class="form-control" formControlName="apellido" />
+        </div>
+
+        <div class="mb-3">
+          <label for="cumpleanos" class="form-label">Cumpleaños</label>
+          <input id="cumpleanos" type="date" class="form-control" formControlName="cumpleanos" />
+        </div>
+
+        <div class="mb-3">
+          <label for="empresa" class="form-label">Empresa</label>
+          <input id="empresa" class="form-control" formControlName="empresa" />
+        </div>
+
+        <div class="mb-3">
+          <label for="pagina_web" class="form-label">Página Web</label>
+          <input id="pagina_web" class="form-control" formControlName="pagina_web" />
+        </div>
+
+        <div class="mb-3">
+          <label for="notas" class="form-label">Notas</label>
+          <textarea id="notas" class="form-control" formControlName="notas" rows="3"></textarea>
+        </div>
+        <hr>
+        <!-- Teléfonos -->
+        <div formArrayName="telefonos" class="mb-3">
+          <label for="telefonos" class="form-label mr-3">Teléfonos</label>
+          <div *ngFor="let telefono of telefonos.controls; let i = index" class="mb-3" [formGroupName]="i">
+            <div class="row">
+              <div class="col-md-6 mb-1">
+                <label for="numero-{{i}}" class="form-label">Número</label>
+                <input formControlName="numero" class="form-control" placeholder="Número de teléfono" id="numero-{{i}}" />
+              </div>
+              <div class="col-md-6 mb-1">
+                <label for="tipo-{{i}}" class="form-label">Tipo</label>
+                <input formControlName="tipo" class="form-control" placeholder="Tipo" id="tipo-{{i}}" />
+              </div>
+            </div>
+            <button type="button" class="btn btn-danger" (click)="removeTelefono(i)">Eliminar</button>
+          </div>
+          <button type="button" class="btn btn-primary mt-2" (click)="addTelefono()">Añadir Teléfono</button>
+        </div>
+        <hr>
+        <!-- Emails -->
+        <div formArrayName="emails" class="mb-3">
+          <label for="emails" class="form-label mr-3">Emails</label>
+          <div *ngFor="let email of emails.controls; let i = index" class="input-group mb-1" [formGroupName]="i">
+            <input formControlName="direccion" class="form-control" placeholder="Dirección de email" />
+            <button type="button" class="btn btn-danger" (click)="removeEmail(i)">Eliminar</button>
+          </div>
+          <button type="button" class="btn btn-primary mt-2" (click)="addEmail()">Añadir Email</button>
+        </div>
+        <hr>
+        <!-- Direcciones -->
+          <div formArrayName="direcciones" class="mb-3">
+            <label for="direcciones" class="form-label mr-3">Direcciones</label>
+            <div *ngFor="let direccion of direcciones.controls; let i = index" class="mb-3" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-6 mb-1">
+                  <label for="calle-{{i}}" class="form-label">Calle</label>
+                  <input formControlName="calle" class="form-control" placeholder="Calle" id="calle-{{i}}" />
+                </div>
+                <div class="col-md-6 mb-1">
+                  <label for="ciudad-{{i}}" class="form-label">Ciudad</label>
+                  <input formControlName="ciudad" class="form-control" placeholder="Ciudad" id="ciudad-{{i}}" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-1">
+                  <label for="estado-{{i}}" class="form-label">Estado</label>
+                  <input formControlName="estado" class="form-control" placeholder="Estado" id="estado-{{i}}" />
+                </div>
+                <div class="col-md-6 mb-1">
+                  <label for="codigo_postal-{{i}}" class="form-label">Código Postal</label>
+                  <input formControlName="codigo_postal" class="form-control" placeholder="Código Postal" id="codigo_postal-{{i}}" />
+                </div>
+              </div>
+              <button type="button" class="btn btn-danger" (click)="removeDireccion(i)">Eliminar</button>
+            </div>
+            <button type="button" class="btn btn-primary mt-2" (click)="addDireccion()">Añadir Dirección</button>
+          </div>
+
+
+        <button type="submit" class="btn btn-success">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>
+      </form>
+    </div>
+  </div>
+</div>

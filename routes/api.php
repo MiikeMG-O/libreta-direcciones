@@ -10,3 +10,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/contactos', [ContactoController::class, 'index']);
+    Route::get('/contacto/{id}', [ContactoController::class, 'show']);
+    Route::post('/contactos', [ContactoController::class, 'create']);
+    Route::put('/contactos/{id}', [ContactoController::class, 'update']);
+    Route::delete('/contactos', [ContactoController::class, 'destroy']);
+});

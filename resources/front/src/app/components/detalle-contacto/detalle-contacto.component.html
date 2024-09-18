@@ -1,0 +1,78 @@
+<div *ngIf="isLoading" class="spinner">Cargando...</div>
+
+<div class="container pt-5">
+  <div *ngIf="contacto" class="card">
+    <div class="card-body">
+      <div class="row">
+        <!-- Columna para la información principal -->
+        <div class="col col-sm-12 col-lg-4">
+          <div class="text-center pb-3">
+            <fa-icon size="5x" [icon]="['fas', 'user-circle']"></fa-icon>
+          </div>
+          <h1 class="card-title text-center">
+            {{ contacto.nombre }} {{ contacto.apellido || '' }}
+          </h1>
+          <h6 class="card-subtitle mb-2 text-muted text-center">
+            Cumpleaños: {{ contacto.cumpleanos ? (contacto.cumpleanos | date:'dd/MM/yyyy') : 'Sin Cumpleaños' }}
+          </h6>
+          <h6 class="card-subtitle my-2 text-muted text-center">
+            Lugar de trabajo: {{ contacto.empresa || 'Sin lugar de trabajo' }}
+          </h6>
+        </div>
+
+        <!-- Columna para teléfonos, emails y direcciones -->
+        <div class="col col-sm-12 col-lg-8">
+          <div class="row">
+            <!-- Teléfonos -->
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <strong>Teléfonos:</strong>
+                <ul class="list-unstyled">
+                  <li class="ps-2" *ngFor="let telefono of contacto.telefonos">
+                    {{ telefono.numero }} ({{ telefono.tipo }})
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Emails -->
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <strong>Emails:</strong>
+                <ul class="list-unstyled">
+                  <li class="ps-2" *ngFor="let email of contacto.emails">
+                    {{ email.direccion }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direcciones -->
+          <div class="mb-3">
+            <strong>Direcciones:</strong>
+            <ul class="list-unstyled">
+              <li class="ps-2" *ngFor="let direccion of contacto.direcciones">
+                Calle: {{ direccion.calle }}, {{ direccion.ciudad }}, {{ direccion.estado }}, #{{
+                direccion.codigo_postal }}
+              </li>
+            </ul>
+          </div>
+
+          <!-- Nota -->
+          <p class="card-text">
+            <strong>Nota:</strong> {{ contacto.notas || 'Sin Notas' }}
+          </p>
+          <!-- Página Web -->
+          <p class="card-text">
+            <strong>Página Web:</strong>
+            <a *ngIf="contacto.pagina_web" [href]="contacto.pagina_web" target="_blank">
+              <span class="ps-1">{{ contacto.pagina_web }}</span>
+            </a>
+            <span *ngIf="!contacto.pagina_web" class="ps-1">Sin Página Web</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
